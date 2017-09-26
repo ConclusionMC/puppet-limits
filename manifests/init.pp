@@ -2,7 +2,11 @@
 #
 class limits (
   $purge_limits_d_dir   = true,
-  $entries_hash         = hiera_hash(limits::entries, {}),
+  $entries_hash         = lookup({
+    name          => 'limits::entries',
+    merge         => 'hash',
+    default_value => {},
+  }),
   $manage_limits_d_dir  = true,
 ) inherits ::limits::params {
 
